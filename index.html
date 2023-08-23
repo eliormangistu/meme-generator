@@ -8,7 +8,7 @@
     <title>Meme Generator</title>
 </head>
 
-<body class="main-layout">
+<body class="main-layout" onload="onInit()">
 
 
     <section class="main-header-container">
@@ -32,17 +32,21 @@
 
 
     <main>
-        <section class="gallery">
-
-        </section>
 
 
         <section class="editor">
+            <input onkeyup="onSetLineTxt(event)" type="text" name="text" id="txt">
 
+            <h2></h2>
+            <canvas class="canvas" width="450" height="450">
+            </canvas>
         </section>
+        <a href="#" onclick="onDownload(this)" download="my-meme.jpg">Download</a>
+
+        <section class="gallery">
+        </section>
+
     </main>
-
-
 
 
     <section class="main-footer-container">
@@ -50,8 +54,10 @@
             <small>© 2023 Memes.com - All Rights Reserved</small>
         </footer>
     </section>
-
+    <script src="js/services/util-service.js"></script>
     <script src="js/services/meme-service.js"></script>
+    <script src="js/gallery-controller.js"></script>
+    <script src="js/meme-controller.js"></script>
 </body>
 
 </html>
