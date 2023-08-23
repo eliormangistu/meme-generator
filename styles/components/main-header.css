@@ -1,0 +1,9 @@
+
+.main-header .main-nav a {
+    display: flex;
+    width: 130px;
+    height: 130px;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}

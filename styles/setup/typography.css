@@ -1,0 +1,9 @@
+@font-face {
+    font-family: indie;
+    src: url("/fonts/indie-flower/IndieFlower-Regular.ttf")
+}
+
+@font-face {
+    font-family: marker;
+    src: url("/fonts/permanent-marker/PermanentMarker-Regular.ttf");
+}
