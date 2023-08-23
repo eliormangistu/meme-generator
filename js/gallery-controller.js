@@ -1,8 +1,7 @@
 'use strict'
-console.log('hi');
 
 function renderGallery() {
-    console.log('gallery');
+    //console.log('gallery');
     const images = getImages()
     const strHtml = images.map((img) => `
     <img src="${img.url}" onclick="onImgSelect(${img.id})">

@@ -1,8 +1,10 @@
 'use strict'
 
-var gText
+//var gText
 var gMeme
 var gImgs
+
+var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
 
 gImgs = [
     { id: 1, url: 'img/1.jpg', keywords: ['funny', 'cat'] },
@@ -30,10 +32,14 @@ gMeme = {
     selectedLineIdx: 0,
     lines: [
         {
-            txt: gText = 'I sometimes eat Falafel',
-            //'I sometimes eat Falafel',
+            txt: 'I sometimes eat Falafel',
             size: 20,
-            color: 'red'
+            color: getRandomColor()
+        },
+        {
+            txt: 'I love Pizza',
+            size: 30,
+            color: getRandomColor()
         }
     ]
 }
@@ -47,16 +53,12 @@ function getMeme() {
 
 console.log('get images', getMeme());
 
-var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
 
+console.log('hi', gMeme.lines[gMeme.selectedLineIdx].txt);
 
 function setLineTxt(textBy) {
-    gText = textBy
-}
-
-function getLineTxt() {
-    console.log('gText', gText);
-    return gText
+    gMeme.lines[gMeme.selectedLineIdx].txt = textBy
+    console.log(textBy);
 }
 
 function setImg(imgBy) {
@@ -66,4 +68,22 @@ function setImg(imgBy) {
 
 function getImages() {
     return gImgs
+}
+
+function changeTextColor(colorBy) {
+    gMeme.lines[gMeme.selectedLineIdx].color = colorBy
+    console.log(colorBy);
+}
+
+function increaseTxt() {
+    gMeme.lines[gMeme.selectedLineIdx].size += 10
+}
+
+function decreaseTxt() {
+    gMeme.lines[gMeme.selectedLineIdx].size -= 10
+}
+console.log(getLine(1));
+console.log(gMeme.lines);
+function getLine(lineBy) {
+    return gMeme.lines[lineBy]
 }

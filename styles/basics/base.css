@@ -51,5 +51,8 @@ img:hover {
 canvas {
     background-color: white;
     margin: 0 auto;
-    z-index: 0;
+}
+
+input {
+    margin-bottom: 10px;
 }

@@ -30,14 +30,14 @@
         </select>
     </label> -->
 
-
     <main>
 
-
         <section class="editor">
-            <input onkeyup="onSetLineTxt(event)" type="text" name="text" id="txt">
-
-            <h2></h2>
+            <input oninput="onSetLineTxt(this.value)" type="text" name="text" id="txt">
+            <input onchange="onChangeTextColor(this.value)" type="color" name="color" id="clr">
+            <button onclick="onIncreaseTxt()">A+</button>
+            <button onclick="onDecreaseTxt()">A-</button>
+            <button onclick="onAddLine()">add line</button>
             <canvas class="canvas" width="450" height="450">
             </canvas>
         </section>
