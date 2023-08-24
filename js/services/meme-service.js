@@ -1,6 +1,5 @@
 'use strict'
 
-//var gText
 var gMeme
 var gImgs
 var gText = ['Funny', 'Food', 'Shoe Me', 'Whassup', 'Heyyy']
@@ -33,18 +32,22 @@ gMeme = {
     selectedLineIdx: 0,
     lines: [
         {
-            x: 50,
+            x: 30,
             y: 30,
             txt: 'I sometimes eat Falafel',
-            size: 20,
-            color: getRandomColor()
+            size: 30,
+            color: getRandomColor(),
+            lineColor: getRandomColor(),
+            font: 'Impact'
         },
         {
-            x: 80,
+            x: 200,
             y: 300,
             txt: 'I love Pizza',
-            size: 30,
-            color: getRandomColor()
+            size: 35,
+            color: getRandomColor(),
+            lineColor: getRandomColor(),
+            font: 'Impact'
         }
     ]
 }
@@ -76,6 +79,11 @@ function changeTextColor(colorBy) {
     console.log(colorBy);
 }
 
+function changeLineColor(colorBy) {
+    gMeme.lines[gMeme.selectedLineIdx].lineColor = colorBy
+    console.log(colorBy);
+}
+
 function increaseTxt() {
     gMeme.lines[gMeme.selectedLineIdx].size += 10
 }
@@ -88,18 +96,16 @@ function getLine() {
     return createLine()
 }
 
-//TODO!!!!
-
 function createLine() {
     gMeme.lines.push({
         x: getRandomIntInclusive(10, 300),
-        y: getRandomIntInclusive(10, 400),
+        y: getRandomIntInclusive(10, 300),
         txt: 'Funny Meme',
         size: getRandomIntInclusive(20, 50),
-        color: getRandomColor()
+        color: getRandomColor(),
+        lineColor: getRandomColor(),
+        font: 'Impact'
     })
-    //gText[(getRandomIntInclusive(0, 4))]
-    //['Funny', 'Food', 'Shoe Me', 'Whassup', 'Heyyy'],
     console.log(gMeme);
 }
 
@@ -114,4 +120,43 @@ function switchLine() {
     // console.log(gMeme.selectedLineIdx);
     // return gMeme.selectedLineIdx.txt
     //return gMeme.selectedLineIdx === 0 ? gMeme.selectedLineIdx = 1 : gMeme.selectedLineIdx = 0
+}
+
+function changeTextFont(fontBy) {
+    if (fontBy === 'courier') {
+        gMeme.lines[gMeme.selectedLineIdx].font = 'Courier New'
+    } if (fontBy === 'gill') {
+        gMeme.lines[gMeme.selectedLineIdx].font = 'Gill Sans'
+    } if (fontBy === 'times') {
+        gMeme.lines[gMeme.selectedLineIdx].font = 'Times New Roman'
+    } if (fontBy === 'ver') {
+        gMeme.lines[gMeme.selectedLineIdx].font = 'Verdana'
+    } else if (fontBy === '') {
+        gMeme.lines[gMeme.selectedLineIdx].font = 'Impact'
+    }
+}
+
+function changeFontSize(sizeBy) {
+    gMeme.lines[gMeme.selectedLineIdx].size = sizeBy
+}
+
+function right() {
+    gMeme.lines[gMeme.selectedLineIdx].x = 150
+}
+
+function left() {
+    gMeme.lines[gMeme.selectedLineIdx].x = 10
+}
+
+function center(centerByX, centerByY) {
+    gMeme.lines[gMeme.selectedLineIdx].x = centerByX
+    gMeme.lines[gMeme.selectedLineIdx].y = centerByY
+}
+
+function up() {
+    gMeme.lines[gMeme.selectedLineIdx].y -= 10
+}
+
+function down() {
+    gMeme.lines[gMeme.selectedLineIdx].y += 10
 }

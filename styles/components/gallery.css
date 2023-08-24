@@ -4,8 +4,12 @@
 
 .gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 4fr));
+    grid-template-columns: repeat(auto-fit, minmax(230px, 4fr));
     grid-auto-flow: dense;
     gap: 15px;
     padding: var(--gallery-padding);
+}
+
+.hidden {
+    display: none;
 }

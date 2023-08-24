@@ -16,40 +16,73 @@
             <h1 class="logo">Meme Generator</h1>
             <nav class="main-nav-container">
                 <ul class="main-nav flex clean-list">
-                    <li><a href="#">Gallery</a></li>
-                    <li><a href="#">About</a></li>
+                    <li><a onclick="onRenderGallery()" href="#">Gallery</a></li>
+                    <li><a onclick="onAbout()" href="#">About</a></li>
                     <li><a href="#">Memes</a></li>
                 </ul>
             </nav>
         </header>
     </section>
 
-    <!-- <label>
-        <select class="select-sort">
-            <option value=""></option>
-        </select>
-    </label> -->
-
     <main>
 
-        <section class="editor">
-            <input oninput="onSetLineTxt(this.value)" type="text" name="text" id="txt"
-                placeholder="you think your funny?">
-            <input oninput="onChangeTextColor(this.value)" type="color" name="color" id="clr">
-            <button onclick="onIncreaseTxt()">A+</button>
-            <button onclick="onDecreaseTxt()">A-</button>
-            <button onclick="onAddLine()">add line</button>
-            <button onclick="onSwitchLine()">switch line</button>
+        <section class="editor flex align-center hidden">
             <canvas class="canvas" width="450" height="450" onclick="onClinck(event)">
             </canvas>
+            <section class="tool-bar flex align-center">
+                <input oninput="onSetLineTxt(this.value)" type="text" name="text" id="txt"
+                    placeholder="you think your funny?">
+                <div>
+                    <label>text color
+                        <input oninput="onChangeTextColor(this.value)" type="color" name="color" id="clr">
+                    </label>
+                    <label>line color
+                        <input oninput="onChangeLineColor(this.value)" type="color" name="color" id="clr">
+                    </label>
+                    <button onclick="onIncreaseTxt()">A+</button>
+                    <button onclick="onDecreaseTxt()">A-</button>
+                </div>
+                <div>
+                    <button onclick="onAddLine()">add line</button>
+                    <button onclick="onSwitchLine()">switch line</button>
+                    <button onclick="onDeleteLine()">delete</button>
+                </div>
+                <div>
+                    <select class="font-by" onchange="onChangeTextFont(this)">
+                        <option class="impact" value=""></option>
+                        <option class="courier-new" value="courier">Courier New</option>
+                        <option class="gill-sans" value="gill">Gill Sans</option>
+                        <option class="times-new-roman" value="times">Times New Roman</option>
+                        <option class="verdana" value="ver">Verdana</option>
+                    </select>
+                    <input oninput="onChangeFontSize(this.value)" type="number" name="number" id="num" value="30">
+                </div>
+                <div>
+                    <button onclick="onRight()">right</button>
+                    <button onclick="onLeft()">left</button>
+                    <button onclick="onCenterBy()">center</button>
+                    <button onclick="onUp()">↑</button>
+                    <button onclick="onDown()">↓</button>
+                </div>
+                <a href="#" onclick="onDownload(this)" download="my-meme.jpg">Download</a>
+            </section>
         </section>
-        <a href="#" onclick="onDownload(this)" download="my-meme.jpg">Download</a>
 
         <section class="gallery">
         </section>
 
-    </main>
+        <section class="about hidden">
+            <h2>Wellcome To My Meme Generator!</h2>
+            <p>
+                There is nothing in the world like a good strong laugh!
+                <br>
+                <br>
+                Enjoy and make sure to laugh!!!
+            </p>
+            <img class="horse" src="horse.jpg">
+        </section>
 
+    </main>
 
     <section class="main-footer-container">
         <footer class="main-footer flex align-center">

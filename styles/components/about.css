@@ -1,0 +1,18 @@
+.about {
+    height: 600px;
+    width: 700px;
+    background-color: aliceblue;
+    padding: 20px;
+    border-radius: 30px;
+    margin: 0 auto;
+}
+
+h2 {
+    font-family: marker;
+    font-size: 2em;
+}
+
+p {
+    font-family: indie;
+    font-size: 1.5em;
+}

@@ -1,7 +1,6 @@
 'use strict'
 
 function renderGallery() {
-    //console.log('gallery');
     const images = getImages()
     const strHtml = images.map((img) => `
     <img src="${img.url}" onclick="onImgSelect(${img.id})">
@@ -10,7 +9,22 @@ function renderGallery() {
 }
 
 function onImgSelect(img) {
-    console.log(img);
+    document.querySelector('.about').classList.add('hidden')
+    document.querySelector('.gallery').classList.add('hidden')
+    document.querySelector('.editor').classList.remove('hidden')
     setImg(img)
     renderMeme()
+}
+
+function onRenderGallery() {
+    document.querySelector('.editor').classList.add('hidden')
+    document.querySelector('.about').classList.add('hidden')
+    document.querySelector('.gallery').classList.remove('hidden')
+    renderGallery()
+}
+
+function onAbout() {
+    document.querySelector('.gallery').classList.add('hidden')
+    document.querySelector('.editor').classList.add('hidden')
+    document.querySelector('.about').classList.remove('hidden')
 }

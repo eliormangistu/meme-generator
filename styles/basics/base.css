@@ -7,6 +7,7 @@ body {
     text-align: center;
     font-family: marker;
     background: linear-gradient(white, purple, pink);
+    background-attachment: fixed;
 }
 
 h1 {
