@@ -33,12 +33,14 @@
     <main>
 
         <section class="editor">
-            <input oninput="onSetLineTxt(this.value)" type="text" name="text" id="txt">
-            <input onchange="onChangeTextColor(this.value)" type="color" name="color" id="clr">
+            <input oninput="onSetLineTxt(this.value)" type="text" name="text" id="txt"
+                placeholder="you think your funny?">
+            <input oninput="onChangeTextColor(this.value)" type="color" name="color" id="clr">
             <button onclick="onIncreaseTxt()">A+</button>
             <button onclick="onDecreaseTxt()">A-</button>
             <button onclick="onAddLine()">add line</button>
-            <canvas class="canvas" width="450" height="450">
+            <button onclick="onSwitchLine()">switch line</button>
+            <canvas class="canvas" width="450" height="450" onclick="onClinck(event)">
             </canvas>
         </section>
         <a href="#" onclick="onDownload(this)" download="my-meme.jpg">Download</a>

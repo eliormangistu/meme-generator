@@ -3,6 +3,7 @@
 //var gText
 var gMeme
 var gImgs
+var gText = ['Funny', 'Food', 'Shoe Me', 'Whassup', 'Heyyy']
 
 var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
 
@@ -32,11 +33,15 @@ gMeme = {
     selectedLineIdx: 0,
     lines: [
         {
+            x: 50,
+            y: 30,
             txt: 'I sometimes eat Falafel',
             size: 20,
             color: getRandomColor()
         },
         {
+            x: 80,
+            y: 300,
             txt: 'I love Pizza',
             size: 30,
             color: getRandomColor()
@@ -53,9 +58,6 @@ function getMeme() {
 
 console.log('get images', getMeme());
 
-
-console.log('hi', gMeme.lines[gMeme.selectedLineIdx].txt);
-
 function setLineTxt(textBy) {
     gMeme.lines[gMeme.selectedLineIdx].txt = textBy
     console.log(textBy);
@@ -63,7 +65,6 @@ function setLineTxt(textBy) {
 
 function setImg(imgBy) {
     gMeme.selectedImgId = imgBy
-    console.log(imgBy);
 }
 
 function getImages() {
@@ -82,8 +83,35 @@ function increaseTxt() {
 function decreaseTxt() {
     gMeme.lines[gMeme.selectedLineIdx].size -= 10
 }
-console.log(getLine(1));
-console.log(gMeme.lines);
-function getLine(lineBy) {
-    return gMeme.lines[lineBy]
+
+function getLine() {
+    return createLine()
+}
+
+//TODO!!!!
+
+function createLine() {
+    gMeme.lines.push({
+        x: getRandomIntInclusive(10, 300),
+        y: getRandomIntInclusive(10, 400),
+        txt: 'Funny Meme',
+        size: getRandomIntInclusive(20, 50),
+        color: getRandomColor()
+    })
+    //gText[(getRandomIntInclusive(0, 4))]
+    //['Funny', 'Food', 'Shoe Me', 'Whassup', 'Heyyy'],
+    console.log(gMeme);
+}
+
+function switchLine() {
+    // var count = 0
+    // for (var i = 0; i < gMeme.lines.length; i++) {
+    //     console.log(i);
+    // }
+    // count++
+    // console.log(count);
+    // console.log(gMeme.lines.length);
+    // console.log(gMeme.selectedLineIdx);
+    // return gMeme.selectedLineIdx.txt
+    //return gMeme.selectedLineIdx === 0 ? gMeme.selectedLineIdx = 1 : gMeme.selectedLineIdx = 0
 }

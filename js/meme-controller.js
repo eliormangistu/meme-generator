@@ -2,6 +2,8 @@
 let gElCanvas
 let gCtx
 
+var isSwitch = false
+
 function onInit() {
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
@@ -12,70 +14,96 @@ function onInit() {
 
 function renderMeme() {
     const memes = getMeme()
-    //console.log(memes.selectedImgId);
-    // const { txt, size, color } = memes.lines[gMeme.selectedLineIdx]
-    // console.log(txt, size, color);
     const elImg = new Image()
     elImg.src = `img/${memes.selectedImgId}.jpg`
     elImg.onload = () => {
         gElCanvas.height = (elImg.naturalHeight / elImg.naturalWidth) * gElCanvas.width
         gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
-        drawText()
-        //console.log(size);
-        //onChangeTextColor(color)
+        memes.lines.forEach(line => {
+            drawText(line.x, line.y, line.txt, line.size, line.color)
+            //console.log(line.x, line.y, line.size);
+        });
     }
 }
 
-function onSetLineTxt(text) {
-    console.log(text);
-    setLineTxt(text)
+function onSetLineTxt(txt) {
+    isSwitch = false
+    setLineTxt(txt)
     renderMeme()
 }
 
-function drawText() {
-    // var y = getRandomIntInclusive(45, 150)
-    // var x = getRandomIntInclusive(45, 150)
-    const memes = getMeme()
-    const lines = memes.lines
-    lines.forEach(line => {
-        const { txt, size, color } = line
-        console.log(line);
-        gCtx.lineWidth = 2
-        // gCtx.strokeStyly = 'black'
-        gCtx.fillStyle = color
-        gCtx.font = `${size}px Impact`
-        gCtx.textBaseline = 'middle'
-        gCtx.fillText(memes.lines[0].txt, 100, 30)
-        gCtx.fillText(memes.lines[1].txt, 200, 100)
-        console.log(memes.lines[1].txt);
-    });
-    // gCtx.fillText(memes.lines[0].txt, 50, 30)
-    // gCtx.fillText(memes.lines[1].txt, 200, 200)
-    // gCtx.strokeText(txt, 45, 32)
+function drawText(x, y, txt, size, color) {
+    gCtx.lineWidth = 2
+    gCtx.fillStyle = color
+    gCtx.font = `${size}px Impact`
+    gCtx.textBaseline = 'middle'
+    gCtx.fillText(txt, x, y)
+
+    if (!isSwitch) return
+    const txtMs = gCtx.measureText(txt).width
+    gCtx.strokeRect(x, y - 20, txtMs, txtMs / 2.5)
 }
 
 function onChangeTextColor(color) {
+    isSwitch = false
     console.log(color);
     gCtx.fillStyle = color
     changeTextColor(color)
+    renderMeme()
 }
 
 function onDownload(elLink) {
+    isSwitch = false
     const drawContent = gElCanvas.toDataURL('draw/jpeg')
     elLink.href = drawContent
 }
 
 function onIncreaseTxt() {
+    isSwitch = false
     increaseTxt()
     renderMeme()
 }
 
 function onDecreaseTxt() {
+    isSwitch = false
     decreaseTxt()
     renderMeme()
 }
 
 function onAddLine() {
-    console.log('line');
+    getLine()
+    renderMeme()
 }
 
+function onSwitchLine() {
+
+    isSwitch = true
+    setLineTxt(txt.placeholder)
+    renderMeme()
+    const meme = getMeme()
+    meme.selectedLineIdx++
+    if (meme.selectedLineIdx === meme.lines.length) meme.selectedLineIdx = 0
+    // console.log(meme.lines[meme.selectedLineIdx].txt);
+}
+
+function onClinck(ev) {
+    //onSwitchLine()
+
+    // console.log(ev);
+    const { offsetX, offsetY } = ev
+    //console.log('offsetX, offsetY:', offsetX, offsetY)
+    //console.log(' clientX, clientY:', clientX, clientY)
+    const memes = getMeme().lines
+    console.log(memes);
+    const currMeme = memes.find(meme => {
+        var txtWidth = gCtx.measureText(meme.x.txt).width
+        console.log(txtWidth);
+        console.log(meme.x, meme.y, offsetX, offsetY);
+        return offsetX >= meme.x && offsetX <= meme.x + txtWidth
+            && offsetY >= meme.y && offsetY <= meme.y + meme.size
+    })
+    if (currMeme) {
+        console.log('yayyyy!');
+        console.log(currMeme.txt, currMeme.size, clientX, clientY);
+    }
+}
